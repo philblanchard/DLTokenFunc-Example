@@ -19,10 +19,11 @@ namespace DirectLineTokenFuncProj
         }
 
         [Function("DirectLikeTokenFetch")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+            _logger.LogInformation(await req.ReadAsStringAsync());
             var token = await _client.GetToken();
 
             var response = req.CreateResponse(HttpStatusCode.OK);

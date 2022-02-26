@@ -1,6 +1,7 @@
 #.Net Azure Function - DL Token Fetching
 
-This guide is a higher-level walkthrough of the steps to create an Azure Function with .Net6. The objective of this function will be to exchange a DirectLine secret for a token to be used when with the BotFramework Web Chat.
+This guide is a higher-level walk through of the steps to create an Azure Function with .Net6. 
+The objective of this function will be to exchange a DirectLine secret for a token to be used when with the BotFramework Web Chat.
 
 From a high-level, the steps are as follows:
 1. Ensure required tools are installed
@@ -20,7 +21,7 @@ From a high-level, the steps are as follows:
 11. Publish
 
 
-## Walkthrough
+## Walk through
 ### Tool Installation
 The tool installation process should be relatively easy to follow and is documented on MS’s site for the various tools.
 
