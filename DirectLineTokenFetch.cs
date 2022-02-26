@@ -18,12 +18,12 @@ public class DirectLineTokenFetch
     [Function("DirectLineTokenFetch")]
     public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req)
     {
-            
+        
         _logger.LogInformation("Request Processed");
         var token = await _client.GetToken();
         var response = req.CreateResponse(HttpStatusCode.OK);
         await response.WriteAsJsonAsync(token);
-            
+        
         return response;
     }
 }
