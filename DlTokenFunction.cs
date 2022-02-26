@@ -30,18 +30,19 @@ public class DlTokenFunction : IDlTokenFunction
         try
         {
             var dlTokenResponse =
-                await _httpClient.PostAsJsonAsync<DirectLineRequest>("v3/directlinp/tokens/generate", null);
+                await _httpClient.PostAsJsonAsync<DirectLineRequest>("v3/directline/tokens/generate", null);
             dlTokenResponse.EnsureSuccessStatusCode();
             var response = await dlTokenResponse.Content.ReadFromJsonAsync<DirectLineToken>();
             return response;
         }
         catch (HttpRequestException ex)
         {
-            
             if (ex.StatusCode != null)
-                _logger.LogError("Call To DirectLine Failed with Status Code: {StatusCode} \r\n Message: {Message}", ex.StatusCode.ToString(), ex.Message);
+                _logger.LogError("Call To DirectLine Failed with Status Code: {StatusCode} \r\n Message: {Message}",
+                    ex.StatusCode.ToString(), ex.Message);
+            var error = new Error(message: ex.Message, statusCode: ex.StatusCode);
+            var response = new DirectLineToken(error: error);
+            return response;
         }
-
-        return new DirectLineToken();
     }
 }

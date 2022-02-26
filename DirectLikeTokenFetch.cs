@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
@@ -21,15 +20,14 @@ namespace DirectLineTokenFuncProj
         [Function("DirectLikeTokenFetch")]
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            _logger.LogInformation("Request Processed");
 
-            _logger.LogInformation(await req.ReadAsStringAsync());
+            
             var token = await _client.GetToken();
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-           // response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+           //response.Headers.Add("Content-Type", "application/json");
 
-            //response.WriteString("Welcome to Azure Functions!");
 
             await response.WriteAsJsonAsync(token);
             
