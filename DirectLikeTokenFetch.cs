@@ -6,18 +6,18 @@ using Microsoft.Extensions.Logging;
 
 namespace DirectLineTokenFuncProj
 {
-    public class DirectLikeTokenFetch
+    public class DirectLineTokenFetch
     {
         private readonly ILogger _logger;
         private readonly IDlTokenFunction _client;
 
-        public DirectLikeTokenFetch(ILoggerFactory loggerFactory, IDlTokenFunction client)
+        public DirectLineTokenFetch(ILoggerFactory loggerFactory, IDlTokenFunction client)
         {
-            _logger = loggerFactory.CreateLogger<DirectLikeTokenFetch>();
+            _logger = loggerFactory.CreateLogger<DirectLineTokenFetch>();
             _client = client;
         }
 
-        [Function("DirectLikeTokenFetch")]
+        [Function("DirectLineTokenFetch")]
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req)
         {
             _logger.LogInformation("Request Processed");
@@ -26,8 +26,6 @@ namespace DirectLineTokenFuncProj
             var token = await _client.GetToken();
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-           //response.Headers.Add("Content-Type", "application/json");
-
 
             await response.WriteAsJsonAsync(token);
             
