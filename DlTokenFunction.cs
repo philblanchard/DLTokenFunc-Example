@@ -23,7 +23,12 @@ public class DlTokenFunction : IDlTokenFunction
         _httpClient.BaseAddress = _remoteServiceBaseUrl;
         _logger = loggerFactory.CreateLogger<DlTokenFunction>();
     }
-
+/// <summary>
+/// TODO: Add args to GetToken() method (userID and username)
+/// </summary>
+/// <returns>
+/// A DirectLine token response containing a ConversationID, Token, Expiration, and Error if present
+/// </returns>
     public async Task<DirectLineToken> GetToken()
     {
         _logger.LogInformation("Starting DL Fetch");
